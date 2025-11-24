@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eric Wadkins - MIT Graduate, Software Engineer, AI/ML Researcher">
+    <title>Eric Wadkins - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset & Variables */
+        :root {
+            --primary-color: #a31f34;
+            --secondary-color: #8a8b8c;
+            --dark-bg: #1a1a1a;
+            --light-bg: #f5f5f5;
+            --text-dark: #333;
+            --text-light: #666;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary-color);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            background: none;
+            border: none;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 100px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .hero-description {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .hero-description p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .hero-logo {
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+        }
+
+        .hero-logo h2 {
+            color: white;
+            font-size: 2rem;
+            letter-spacing: 5px;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .section-note,
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 3rem;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            background-color: var(--light-bg);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .skill-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .portfolio-item {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .portfolio-content p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .portfolio-tags span {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .portfolio-footer {
+            text-align: center;
+            font-style: italic;
+            color: var(--text-light);
+            margin-top: 2rem;
+        }
+
+        /* Publications Section */
+        .publications-section {
+            background-color: var(--light-bg);
+        }
+
+        .publications-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .publication-item {
+            background: var(--white);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .publication-item:hover {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .publication-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .pub-authors {
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .pub-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-link {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .btn-link:hover {
+            background-color: #8a1829;
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding-left: 50px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: -30px;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            z-index: 1;
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            margin-left: 30px;
+            flex: 1;
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+            color: var(--text-dark);
+        }
+
+        .timeline-content h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .timeline-content p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                display: none;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .skills-grid,
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                padding-left: 40px;
+            }
+
+            .timeline-icon {
+                left: -30px;
+                width: 30px;
+                height: 30px;
+                font-size: 1rem;
+            }
+
+            .timeline-content {
+                margin-left: 20px;
+            }
+
+            .footer .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Eric Wadkins</div>
+            <ul class="nav-menu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#experience">Experience</a></li>
+            </ul>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="about">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Eric Wadkins</h1>
+                <p class="hero-subtitle">MIT '18, M.Eng. Student, Software Engineer, and AI/ML Researcher</p>
+                <div class="hero-description">
+                    <p>I'm a graduate of MIT's Class of 2018 and my passion is Computer Science.</p>
+                    <p>My interests include software design and development, artificial intelligence, machine learning, computer vision, and natural language processing.</p>
+                    <p>I'm currently a graduate student working towards my Master of Engineering (M.Eng.) degree in Computer Science/Artificial Intelligence.</p>
+                </div>
+                <div class="hero-logo">
+                    <h2>MIT</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <p class="section-note">(Somewhat outdated, will update soon. Grad student life is very busy!)</p>
+            
+            <div class="skills-grid">
+                <!-- Computer Vision -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Computer Vision</h3>
+                    <p>I have significant research experience in the field of computer vision, including Computer Vision Tools for Locating Nitrogen-Vacancy Centers. I've also created dozens of programs using libraries such as OpenCV and OpenGL.</p>
+                </div>
+
+                <!-- Machine Learning -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Machine Learning</h3>
+                    <p>I've worked on many projects involving machine learning, and am currently a machine learning research assistant with the MIT Media Lab. I have experience using Tensorflow, PyTorch, and Keras.</p>
+                </div>
+
+                <!-- Java -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-java"></i>
+                    </div>
+                    <h3>Java</h3>
+                    <p>I have over 6 years of software development experience in Java, creating games, plugins, and various other applications.</p>
+                </div>
+
+                <!-- Python -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3>Python</h3>
+                    <p>Over the past 3 years, I've had extensive experience with Python in the course of my research, classwork, and personal projects.</p>
+                </div>
+
+                <!-- Web Development -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>With a combined 7 years of experience, I often develop full-stack applications, consisting of HTML/JavaScript/CSS, various web libraries, and a Node.js/MongoDB backend.</p>
+                </div>
+
+                <!-- C++ -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+                    <h3>C++</h3>
+                    <p>I have over 4 years of experience programming in C++. My projects include a custom game engine using OpenGL and computer vision projects using OpenCV.</p>
+                </div>
+
+                <!-- Node.js -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-node-js"></i>
+                    </div>
+                    <h3>Node.js</h3>
+                    <p>I have extensive experience in Node.js and many of its modules, including Express, Request, Grunt, Mocha, Cheerio, Bcrypt, and Oauth2-server.</p>
+                </div>
+
+                <!-- Web Libraries -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Web Libraries</h3>
+                    <p>I have significant experience using web libraries such as Durandal, jQuery, and Bootstrap to create web applications.</p>
+                </div>
+
+                <!-- MongoDB -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>MongoDB</h3>
+                    <p>With many years of experience using MongoDB for backends, many of my projects utilize Node's MongoDB driver.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio-section">
+        <div class="container">
+            <h2 class="section-title">Portfolio</h2>
+            <p class="section-note">(Somewhat outdated, will update soon. Grad student life is very busy!)</p>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">Game Engine</div>
+                    <div class="portfolio-content">
+                        <h3>Custom Game Engine</h3>
+                        <p>A custom game engine including dynamic lighting, terrain, and static and dynamic objects.</p>
+                        <div class="portfolio-tags">
+                            <span>C++</span>
+                            <span>OpenGL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image">AI Simulation</div>
+                    <div class="portfolio-content">
+                        <h3>Ray Casting Simulation</h3>
+                        <p>A simulation using AI techniques such as ray casting, spatial mapping, Bayesian filtering, pathfinding, etc.</p>
+                        <div class="portfolio-tags">
+                            <span>AI</span>
+                            <span>Computer Vision</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image">Collage Tool</div>
+                    <div class="portfolio-content">
+                        <h3>Collage Generator</h3>
+                        <p>An intelligent collage generation tool using computer vision techniques.</p>
+                        <div class="portfolio-tags">
+                            <span>OpenCV</span>
+                            <span>C++</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-footer">
+                <p>In my free time, I continue to work on personal projects and have many ideas just waiting to be realized.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="publications-section">
+        <div class="container">
+            <h2 class="section-title">Publications</h2>
+            
+            <div class="publications-list">
+                <div class="publication-item">
+                    <h3>AlterEgo: A Personalized Wearable Silent Speech Interface</h3>
+                    <p class="pub-authors">Eric Wadkins. 2019</p>
+                    <div class="pub-links">
+                        <a href="#" class="btn-link">Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="publication-item">
+                    <h3>Self-Driving Microscopy: Bayesian Inference for Localization and Autonomous Navigation</h3>
+                    <p class="pub-authors">Eric Wadkins, Michael Walsh, Dirk Englund. 2018</p>
+                    <div class="pub-links">
+                        <a href="#" class="btn-link">Academia.edu</a>
+                        <a href="#" class="btn-link">Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="publication-item">
+                    <h3>Computer Vision Tools for Locating Nitrogen-Vacancy Centers</h3>
+                    <p class="pub-authors">Eric Wadkins, Michael Walsh, Dirk Englund. 2017</p>
+                    <div class="pub-links">
+                        <a href="#" class="btn-link">Academia.edu</a>
+                        <a href="#" class="btn-link">Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="publication-item">
+                    <h3>Utility Programs for Nitrogen-Vacancy Center Identification and Initialization Analysis</h3>
+                    <p class="pub-authors">Aaron Vontell, Michael Walsh, Eric Wadkins, Dirk Englund. 2017</p>
+                    <div class="pub-links">
+                        <a href="#" class="btn-link">Academia.edu</a>
+                        <a href="#" class="btn-link">Download PDF</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience-section">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <p class="section-subtitle">A short summary of my work experience.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Software Engineer</h3>
+                        <h4>Google</h4>
+                        <p>I currently work as a Software Engineer at Google headquarters in Mountain View, California.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Machine Learning Research Assistant</h3>
+                        <h4>MIT Media Lab</h4>
+                        <p>My research on the AlterEgo project, which I demoed at TED 2019, focuses on developing neural network models for a wearable system that allows humans to converse silently with machines and AI assistants.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-satellite"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Machine Learning Intern</h3>
+                        <h4>NASA Goddard Space Flight Center</h4>
+                        <p>Winter 2018 - Used machine learning to relate satellite measurements to applications of aerosol science. My project focused on using MODIS Terra and Aqua satellites data.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Software Engineering Intern</h3>
+                        <h4>Google - YouTube Team</h4>
+                        <p>Summer 2017 - Venice, Los Angeles office. My work included performance enhancements to some of YouTube's internal infrastructure.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Undergraduate Research Scholar</h3>
+                        <h4>MITRE - Quantum Photonics Laboratory</h4>
+                        <p>Developed machine learning and computer vision-enabled systems to automate laboratory processes. Led a year-long project creating a smart microscopy system.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Undergraduate Researcher</h3>
+                        <h4>MIT CSAIL - InfoLab Group</h4>
+                        <p>Worked to develop intelligent interactive software systems. Focused on a video action recognition system.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Software Engineer</h3>
+                        <h4>Diameter Health</h4>
+                        <p>Summer 2015 - February 2017. Designed and developed automated predictive tools and full-stack applications serving the healthcare industry through clinical intelligence.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Eric Wadkins. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            
+            const spans = hamburger.querySelectorAll('span');
+            if (navMenu.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        // Close menu when clicking on a link
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const spans = hamburger.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            });
+        });
+
+        // // Navbar background change on scroll
+        // window.addEventListener('scroll', () => {
+        //     const navbar = document.querySelector('.navbar');
+        //     if (window.scrollY > 50) {
+        //         navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';}} );
+        //     else {
+        //         navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+        //     }
