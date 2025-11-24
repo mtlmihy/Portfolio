@@ -1,0 +1,41 @@
+/*-----------------------------------------*/
+/*                A Faire                  */
+/*-----------------------------------------*/
+
+Rajouter bouton traduction A FAIRE EN DERNIER SOLUTION FAIRE TOUT EN ANGLAIS
+Rajouter coordonée 
+Rajout rubrique Technique
+Noyer la techo dans le texte
+Rajouter les references 
+Mettre tous les liens gitHub
+Si possible mettre le plus de visualisations en ligne 
+
+/*-----------------------------------------*/
+/*                 Fait                    */
+/*-----------------------------------------*/
+
+Rajouter les soft skills 
+Rajouter les dates des projets
+Bouton visualiser CV puis telecharger
+mettre les langues
+revoir les competences
+Rajout filtres par technologie utilise 
+
+/*-----------------------------------------*/
+/*                Revoir                   */
+/*-----------------------------------------*/
+
+mettre les experiences
+
+
+
+
+
+
+
+
+
+
+
+
+
