@@ -87,7 +87,7 @@ document.addEventListener("keydown", function (e) {
 function activateCheats() {
   var image = document.getElementById("maganache");
 
-  image.src = "images/background/FootUs.jpg";
+  image.src = "images/background/BP_Family.jpg";
 
   var audio = new Audio("audio/pling.mp3");
   audio.play();
