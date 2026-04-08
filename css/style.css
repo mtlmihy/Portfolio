@@ -507,6 +507,18 @@ nav {
   text-shadow: 0 0 5px #fff;
 }
 
+.experience-timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.experience-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 40px;
+}
+
 /* === SECTION : PROJETS === */
 .project.hidden {
   display: none;
