@@ -265,13 +265,20 @@
       <!-- Expereinces -->
       <section id="experience" class="experience">
         <h2>Experiences</h2>
+        <div class="timeline-controls" role="group" aria-label="Filter timeline entries">
+          <button class="timeline-filter-btn active" data-timeline-filter="all">All</button>
+          <button class="timeline-filter-btn" data-timeline-filter="work">Work</button>
+          <button class="timeline-filter-btn" data-timeline-filter="academic">Academic</button>
+          <button class="timeline-filter-btn" data-timeline-filter="project">Project</button>
+        </div>
         <div class="experience-timeline">
-          <div class="experience-item">
+          <div class="experience-item" data-track="work">
             <div class="experience-date">
               <i class="fa-solid fa-calendar-days"></i>
               <span>2026</span>
             </div>
             <div class="experience-content">
+              <span class="experience-badge">Work</span>
               <h3>Internship </h3>
               <h4>QIM info - </h4>
               <p>
@@ -282,12 +289,13 @@
               </div>
             </div>
           </div>
-          <div class="experience-item">
+          <div class="experience-item" data-track="project academic">
             <div class="experience-date">
               <i class="fa-solid fa-calendar-days"></i>
               <span>2025</span>
             </div>
             <div class="experience-content">
+              <span class="experience-badge">Project</span>
               <h3>Collaborative Web Project</h3>
               <h4>IUT Annecy - Full Stack Development</h4>
               <p>
@@ -304,12 +312,13 @@
               </div>
             </div>
           </div>
-          <div class="experience-item">
+          <div class="experience-item" data-track="project academic">
             <div class="experience-date">
               <i class="fa-solid fa-calendar-days"></i>
               <span>2024 - 2025</span>
             </div>
             <div class="experience-content">
+              <span class="experience-badge">Project</span>
               <h3>Loxam Management App</h3>
               <h4>University Project - Teamwork</h4>
               <p>
@@ -326,13 +335,14 @@
               </div>
             </div>
           </div>
-          <div class="experience-item">
+          <div class="experience-item" data-track="work">
             <div class="experience-date">
               <i class="fa-solid fa-calendar-days"></i>
               <span>2024 - 2025</span>
             </div>
 
             <div class="experience-content">
+              <span class="experience-badge">Work</span>
               <h3>L’Érablière, Lefebvre & Fils, Trois-Rivières</h3>
               <h4>Sales Assistant</h4>
               <p>
@@ -352,12 +362,13 @@
             </div>
           </div>
 
-          <div class="experience-item">
+          <div class="experience-item" data-track="project academic">
             <div class="experience-date">
               <i class="fa-solid fa-calendar-days"></i>
               <span>2025</span>
             </div>
             <div class="experience-content">
+              <span class="experience-badge">Project</span>
               <h3>Phaser Game Development</h3>
               <h4>Group Project - JavaScript Framework</h4>
               <p>
@@ -375,12 +386,13 @@
             </div>
           </div>
 
-          <div class="experience-item">
+          <div class="experience-item" data-track="project academic">
             <div class="experience-date">
               <i class="fa-solid fa-calendar-days"></i>
               <span>2025</span>
             </div>
             <div class="experience-content">
+              <span class="experience-badge">Project</span>
               <h3>Python Project - Algorithmics</h3>
               <h4>Collective Work - Problem Solving</h4>
               <p>
@@ -398,12 +410,13 @@
             </div>
           </div>
 
-          <div class="experience-item">
+          <div class="experience-item" data-track="academic">
             <div class="experience-date">
               <i class="fa-solid fa-calendar-days"></i>
               <span>2024</span>
             </div>
             <div class="experience-content">
+              <span class="experience-badge">Academic</span>
               <h3>UML Modeling & Database</h3>
               <h4>Academic Project - System Design</h4>
               <p>
@@ -666,6 +679,7 @@
     </footer>
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="javascript/fire-background.js" defer></script>
     <script src="javascript/main.js" defer></script>
   </body>
 </html>

@@ -1,0 +1,212 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&display=swap");
+
+:root {
+  --primary-color: #ff7a18;
+  --secondary-color: #ffd166;
+  --background-color: #12161d;
+  --dark-accent: #1b212b;
+  --text-color: #f1f4f7;
+  --light-primary-color: rgba(255, 122, 24, 0.55);
+  --light-secondary-color: #ffe4ad;
+  --light-background-color: #e9edf2;
+  --light-accent: #9ea8b4;
+  --light-text-color: #bec7d3;
+  --glitch-color-1: #ff7a18;
+  --glitch-color-2: #ffd166;
+}
+
+body {
+  font-family: "Rajdhani", sans-serif;
+  background: radial-gradient(circle at 15% 10%, #252e3a 0%, #12161d 50%, #0c1016 100%);
+  color: var(--text-color);
+}
+
+h1,
+h2,
+h3,
+.logo {
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 3px rgba(255, 122, 24, 0.45);
+}
+
+header {
+  background: rgba(14, 18, 24, 0.92);
+  border-bottom: 1px solid rgba(255, 122, 24, 0.6);
+  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+}
+
+main {
+  background-image: linear-gradient(rgba(10, 12, 17, 0.88), rgba(10, 12, 17, 0.9)),
+    url(../images/background/Fantaisy.jpg);
+}
+
+.nav-links a {
+  color: #d7dde4;
+}
+
+.nav-links a:hover,
+.logo,
+h2 {
+  color: var(--primary-color);
+}
+
+.about-image img {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(255, 122, 24, 0.3), 0 0 20px rgba(255, 122, 24, 0.25);
+}
+
+.about-image img:hover {
+  box-shadow: 0 0 0 2px rgba(255, 122, 24, 0.5), 0 0 26px rgba(255, 122, 24, 0.4);
+}
+
+.artstation-link {
+  border-color: rgba(255, 122, 24, 0.85);
+  color: var(--primary-color);
+  background: rgba(22, 28, 38, 0.82);
+  box-shadow: 0 0 12px rgba(255, 122, 24, 0.25);
+}
+
+.artstation-link:hover {
+  color: #fff;
+  border-color: #ffd166;
+  box-shadow: 0 0 16px rgba(255, 209, 102, 0.32);
+}
+
+.skills-category-title {
+  border-bottom-color: rgba(255, 122, 24, 0.8);
+  color: var(--primary-color);
+}
+
+.skill-item,
+.language-item,
+.project,
+.ref-block,
+.experience-content,
+.experience-date {
+  background: linear-gradient(160deg, rgba(33, 41, 53, 0.86), rgba(22, 28, 38, 0.9));
+  border-color: rgba(255, 122, 24, 0.45);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.skill-item:hover,
+.project:hover,
+.ref-block:hover,
+.language-item:hover {
+  border-color: rgba(255, 209, 102, 0.75);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.38);
+}
+
+.btn,
+.filter-btn {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  background: rgba(255, 122, 24, 0.06);
+}
+
+.btn:hover,
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--primary-color);
+  color: #10151c;
+  box-shadow: 0 0 14px rgba(255, 122, 24, 0.45);
+}
+
+.tag {
+  border-color: rgba(255, 122, 24, 0.75);
+  color: #ffba7a;
+}
+
+.tag:hover {
+  background: var(--primary-color);
+  color: #111820;
+}
+
+.project img {
+  border-bottom-color: rgba(255, 122, 24, 0.6);
+  filter: grayscale(80%) contrast(1.05) brightness(0.72);
+}
+
+.project:hover img {
+  filter: grayscale(20%) contrast(1.02) brightness(0.9);
+}
+
+.contact-form {
+  background: rgba(20, 25, 33, 0.85);
+  border: 1px solid rgba(255, 122, 24, 0.5);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+}
+
+input,
+textarea {
+  background: rgba(10, 14, 20, 0.85);
+  border: 1px solid rgba(255, 122, 24, 0.38);
+  color: #edf0f4;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #ffd166;
+  box-shadow: 0 0 0 2px rgba(255, 209, 102, 0.18);
+  outline: none;
+}
+
+.social-icon {
+  border-color: rgba(255, 122, 24, 0.7);
+  color: #ffba7a;
+}
+
+.social-icon:hover {
+  color: #121720;
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+#theme-switcher-btn {
+  border-radius: 4px;
+  font-family: "Rajdhani", sans-serif;
+  letter-spacing: 0.4px;
+  backdrop-filter: blur(3px);
+}
+
+@media (max-width: 768px) {
+  #theme-switcher-btn {
+    right: 14px;
+    bottom: 14px;
+    padding: 7px 10px;
+    font-size: 0.72rem;
+  }
+}
+
+/* Fire background canvas (Konami code Easter egg) */
+#fire-bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  transition: opacity 1.2s ease-in;
+}
+
+#fire-bg-canvas.active {
+  opacity: 0.96;
+  filter: saturate(1.35) contrast(1.2) brightness(1.08);
+}
+
+body[data-theme="titanfall"] header,
+body[data-theme="titanfall"] main,
+body[data-theme="titanfall"] footer,
+body[data-theme="titanfall"] #theme-switcher-btn,
+body[data-theme="titanfall"] #konami-debug {
+  position: relative;
+  z-index: 2;
+}
+
+body[data-theme="titanfall"].fire-bg-active main {
+  background-image: linear-gradient(rgba(10, 12, 17, 0.12), rgba(10, 12, 17, 0.2));
+}

@@ -2,6 +2,68 @@ const burger = document.querySelector(".burger");
 const navLinks = document.querySelector(".nav-links");
 const links = document.querySelectorAll(".nav-links li");
 
+// Theme switcher: default or titanfall
+const THEME_STORAGE_KEY = "portfolio-theme";
+const titanfallThemeLink = document.createElement("link");
+titanfallThemeLink.rel = "stylesheet";
+titanfallThemeLink.href = "css/theme-titanfall.css";
+titanfallThemeLink.id = "theme-titanfall";
+titanfallThemeLink.disabled = true;
+document.head.appendChild(titanfallThemeLink);
+
+function applyTheme(themeName) {
+  const useTitanfall = themeName === "titanfall";
+  titanfallThemeLink.disabled = !useTitanfall;
+  document.body.setAttribute("data-theme", useTitanfall ? "titanfall" : "default");
+  localStorage.setItem(THEME_STORAGE_KEY, useTitanfall ? "titanfall" : "default");
+
+  const themeBtn = document.getElementById("theme-switcher-btn");
+  if (themeBtn) {
+    themeBtn.innerHTML = useTitanfall
+      ? '<i class="fa-solid fa-moon"></i>'
+      : '<i class="fa-solid fa-sun"></i>';
+    themeBtn.setAttribute(
+      "aria-label",
+      useTitanfall ? "Active theme: Titanfall" : "Active theme: Original"
+    );
+  }
+}
+
+function initThemeSwitcher() {
+  const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || "default";
+  applyTheme(savedTheme);
+
+  const themeBtn = document.createElement("button");
+  themeBtn.id = "theme-switcher-btn";
+  themeBtn.type = "button";
+  themeBtn.className = "btn";
+  themeBtn.style.position = "fixed";
+  themeBtn.style.right = "20px";
+  themeBtn.style.bottom = "20px";
+  themeBtn.style.zIndex = "9998";
+  themeBtn.style.padding = "8px 12px";
+  themeBtn.style.fontSize = "0.8rem";
+  themeBtn.style.opacity = "0.9";
+  themeBtn.style.cursor = "pointer";
+  themeBtn.style.display = "inline-flex";
+  themeBtn.style.alignItems = "center";
+  themeBtn.style.justifyContent = "center";
+  themeBtn.style.width = "46px";
+  themeBtn.style.height = "46px";
+  themeBtn.style.padding = "0";
+
+  themeBtn.addEventListener("click", () => {
+    const currentTheme = localStorage.getItem(THEME_STORAGE_KEY) || "default";
+    const nextTheme = currentTheme === "titanfall" ? "default" : "titanfall";
+    applyTheme(nextTheme);
+  });
+
+  document.body.appendChild(themeBtn);
+  applyTheme(savedTheme);
+}
+
+initThemeSwitcher();
+
 burger.addEventListener("click", () => {
   navLinks.classList.toggle("nav-active");
 
@@ -18,7 +80,7 @@ links.forEach((link) => {
 });
 
 const sectionsToAnimate = document.querySelectorAll(
-  ".about, .skills, .projects, .contact"
+  ".about, .skills, .experience, .projects, .contact"
 );
 
 const observerOptions = {
@@ -41,6 +103,27 @@ const observer = new IntersectionObserver(observerCallback, observerOptions);
 
 sectionsToAnimate.forEach((section) => {
   observer.observe(section);
+});
+
+const experienceItems = document.querySelectorAll(".experience-item");
+
+const timelineObserver = new IntersectionObserver(
+  (entries, timelineObs) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        timelineObs.unobserve(entry.target);
+      }
+    });
+  },
+  {
+    root: null,
+    threshold: 0.18,
+  }
+);
+
+experienceItems.forEach((item) => {
+  timelineObserver.observe(item);
 });
 
 var allowedKeys = {
@@ -187,6 +270,11 @@ function activateCheats() {
   image.style.transition = "transform 0.5s ease";
   image.style.transform = "scale(1.1)";
   setTimeout(() => (image.style.transform = "scale(1)"), 500);
+
+  var currentTheme = localStorage.getItem(THEME_STORAGE_KEY) || "default";
+  if (currentTheme === "titanfall" && window.fireBackground) {
+    window.fireBackground.toggle();
+  }
 }
 const form = document.querySelector("form");
 form.addEventListener("submit", (e) => {
@@ -255,6 +343,29 @@ filterBtns.forEach((btn) => {
         } else {
           project.classList.add("hidden");
         }
+      }
+    });
+  });
+});
+
+const timelineFilterBtns = document.querySelectorAll(".timeline-filter-btn");
+
+timelineFilterBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    timelineFilterBtns.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const filter = btn.getAttribute("data-timeline-filter");
+
+    experienceItems.forEach((item) => {
+      const trackValues = item.getAttribute("data-track").split(" ");
+      const shouldShow = filter === "all" || trackValues.includes(filter);
+
+      if (shouldShow) {
+        item.classList.remove("hidden");
+        requestAnimationFrame(() => item.classList.add("is-visible"));
+      } else {
+        item.classList.add("hidden");
       }
     });
   });
