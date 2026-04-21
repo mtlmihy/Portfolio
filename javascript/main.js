@@ -4,6 +4,8 @@ const links = document.querySelectorAll(".nav-links li");
 
 // Theme switcher: default or titanfall
 const THEME_STORAGE_KEY = "portfolio-theme";
+const SPLINE_PARALLAX_X = 12;
+const SPLINE_PARALLAX_Y = 10;
 const titanfallThemeLink = document.createElement("link");
 titanfallThemeLink.rel = "stylesheet";
 titanfallThemeLink.href = "css/theme-titanfall.css";
@@ -11,11 +13,52 @@ titanfallThemeLink.id = "theme-titanfall";
 titanfallThemeLink.disabled = true;
 document.head.appendChild(titanfallThemeLink);
 
+function resetSplineTransform() {
+  const splineEl = document.getElementById("spline-konami-bg");
+  if (splineEl) {
+    splineEl.style.transform = "translate3d(0, 0, 0) scale(1.02)";
+  }
+}
+
+document.addEventListener("mousemove", function (e) {
+  const splineEl = document.getElementById("spline-konami-bg");
+  if (!splineEl || !document.body.classList.contains("spline-bg-active")) {
+    return;
+  }
+
+  const x = e.clientX / window.innerWidth - 0.5;
+  const y = e.clientY / window.innerHeight - 0.5;
+  const offsetX = -x * SPLINE_PARALLAX_X;
+  const offsetY = -y * SPLINE_PARALLAX_Y;
+
+  splineEl.style.transform =
+    "translate3d(" + offsetX.toFixed(2) + "px, " + offsetY.toFixed(2) + "px, 0) scale(1.04)";
+});
+
+document.addEventListener("mouseleave", function () {
+  resetSplineTransform();
+});
+
 function applyTheme(themeName) {
   const useTitanfall = themeName === "titanfall";
   titanfallThemeLink.disabled = !useTitanfall;
   document.body.setAttribute("data-theme", useTitanfall ? "titanfall" : "default");
   localStorage.setItem(THEME_STORAGE_KEY, useTitanfall ? "titanfall" : "default");
+  const splineEl = document.getElementById("spline-konami-bg");
+
+  // Keep special effects aligned with active theme.
+  if (useTitanfall && window.matrixBackground) {
+    window.matrixBackground.stop();
+  }
+  if (!useTitanfall && window.fireBackground) {
+    window.fireBackground.stop();
+  }
+  if (useTitanfall && splineEl) {
+    document.body.classList.remove("spline-bg-active");
+    splineEl.classList.remove("active");
+    splineEl.style.display = "none";
+    resetSplineTransform();
+  }
 
   const themeBtn = document.getElementById("theme-switcher-btn");
   if (themeBtn) {
@@ -262,7 +305,7 @@ document.addEventListener("keydown", function (e) {
 function activateCheats() {
   var image = document.getElementById("maganache");
 
-  image.src = "images/background/BP_Family.jpg";
+  image.src = "images/maganache/wildRobot.png";
 
   var audio = new Audio("audio/pling.mp3");
   audio.play();
@@ -272,8 +315,37 @@ function activateCheats() {
   setTimeout(() => (image.style.transform = "scale(1)"), 500);
 
   var currentTheme = localStorage.getItem(THEME_STORAGE_KEY) || "default";
-  if (currentTheme === "titanfall" && window.fireBackground) {
-    window.fireBackground.toggle();
+  if (currentTheme === "titanfall") {
+    if (window.matrixBackground) {
+      window.matrixBackground.stop();
+    }
+    if (window.fireBackground) {
+      window.fireBackground.toggle();
+    }
+  } else if (currentTheme === "default") {
+    if (window.fireBackground) {
+      window.fireBackground.stop();
+    }
+  }
+
+  // Spline 3D viewer toggle on default theme
+  if (currentTheme === "default") {
+    var splineEl = document.getElementById("spline-konami-bg");
+    if (splineEl) {
+      var isVisible = splineEl.classList.contains("active");
+      if (isVisible) {
+        document.body.classList.remove("spline-bg-active");
+        splineEl.classList.remove("active");
+        splineEl.style.display = "none";
+        resetSplineTransform();
+      } else {
+        splineEl.style.display = "block";
+        document.body.classList.add("spline-bg-active");
+        requestAnimationFrame(function () {
+          splineEl.classList.add("active");
+        });
+      }
+    }
   }
 }
 const form = document.querySelector("form");
