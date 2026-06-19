@@ -24,6 +24,7 @@
     canvas = document.createElement("canvas");
     canvas.id = "matrix-bg-canvas";
     document.body.appendChild(canvas);
+    //Test push
 
     ctx = canvas.getContext("2d");
     ctx.font = FONT_SIZE + "px 'Share Tech Mono', monospace";
